@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 
 import RoadmapTree from "../components/RoadmapTree";
-import { ServerUrl } from "../utils/server";
 
 function CareerGuide() {
   const navigate = useNavigate();
@@ -15,16 +14,20 @@ function CareerGuide() {
   const [roadmap, setRoadmap] = useState(null);
   const [saving, setSaving] = useState(false);
 
+  // Direct backend URL
+  const BACKEND_URL = "https://interviewai-app-70e1.onrender.com";
+
   // Fetch roadmap
   useEffect(() => {
     const fetchRoadmap = async () => {
       try {
-        const res = await axios.get(ServerUrl + "/api/career/roadmap/" + id, {
+        const res = await axios.get(`${BACKEND_URL}/api/career/roadmap/${id}`, {
           withCredentials: true,
         });
         setRoadmap(res.data);
       } catch (err) {
         console.error(err);
+        alert("Failed to fetch roadmap");
       }
     };
     fetchRoadmap();
@@ -43,7 +46,7 @@ function CareerGuide() {
     setSaving(true);
     try {
       await axios.post(
-        ServerUrl + "/api/career/roadmap/save",
+        `${BACKEND_URL}/api/career/roadmap/save`,
         {
           roadmapId: roadmap._id,
           userId,
