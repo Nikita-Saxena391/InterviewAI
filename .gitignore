@@ -1,7 +1,19 @@
-node_modules
-client/node_modules
-server/node_modules
+# Node modules
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Build / output folders
+client/build/
+server/dist/
+
+# Environment files
 .env
-dist
-build
+client/.env
+server/.env
+
+# macOS system files
 .DS_Store
+
+# Logs
+*.log

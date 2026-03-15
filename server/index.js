@@ -8,6 +8,17 @@ import authRouter from "./routes/auth.route.js"
 import userRouter from "./routes/user.route.js"
 import interviewRouter from "./routes/interview.route.js"
 import paymentRouter from "./routes/payment.route.js"
+import careerRouter from "./routes/career.route.js";
+
+
+import chatRouter from "./routes/chat.route.js";
+// server.js
+
+
+
+
+
+
 
 const app = express()
 app.use(cors({
@@ -22,6 +33,16 @@ app.use("/api/auth" , authRouter)
 app.use("/api/user", userRouter)
 app.use("/api/interview" , interviewRouter)
 app.use("/api/payment" , paymentRouter)
+
+
+
+app.use("/api/career", careerRouter);
+
+
+
+app.use("/api/chat", chatRouter);
+
+
 
 const PORT = process.env.PORT || 8000
 app.listen(PORT , ()=>{

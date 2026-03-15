@@ -10,6 +10,17 @@ import InterviewPage from './pages/InterviewPage'
 import InterviewHistory from './pages/InterviewHistory'
 import Pricing from './pages/Pricing'
 import InterviewReport from './pages/InterviewReport'
+import CareerGuide from "./pages/CareerGuide";
+import CareerHome from "./pages/CareerHome";
+import RoadmapHistory from './pages/RoadmapHistory';
+
+
+
+import Chat from "./components/Chat";
+// App.jsx
+
+
+
 
 export const ServerUrl  = "http://localhost:8000"
 
@@ -37,6 +48,17 @@ function App() {
       <Route path='/history' element={<InterviewHistory/>}/>
       <Route path='/pricing' element={<Pricing/>}/>
       <Route path='/report/:id' element={<InterviewReport/>}/>
+       <Route path="/career" element={<CareerHome />} />
+      <Route path="/career/:id" element={<CareerGuide />} />
+
+      {/* NEW ROUTE for saved roadmap */}
+      <Route path="/roadmap/:id" element={<CareerGuide />} />
+      <Route path="/roadmap/history" element={<RoadmapHistory />} />
+        
+  
+
+<Route path="/chat" element={<Chat />} />
+
 
 
 
