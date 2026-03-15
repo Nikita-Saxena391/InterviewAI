@@ -10,7 +10,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setUserData } from "../redux/userSlice";
 
-const ServerUrl = "http://localhost:8000";
+const ServerUrl = "https://interviewai-app.onrender.com";
 
 function Auth({ isModel = false }) {
 
