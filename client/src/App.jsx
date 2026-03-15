@@ -22,7 +22,7 @@ import Chat from "./components/Chat";
 
 
 
-export const ServerUrl  = "http://localhost:8000"
+export const ServerUrl  = "https://interviewai-app.onrender.com"
 
 function App() {
 
