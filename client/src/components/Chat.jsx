@@ -16,7 +16,7 @@ export default function Chat() {
 
     try {
       const res = await fetch(
-        "https://interviewai-app-70e1.onrender.com/api/chat",
+        "https://interviewai-app.onrender.com/api/chat",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -26,9 +26,17 @@ export default function Chat() {
 
       if (!res.ok) throw new Error("Failed to fetch from server");
 
-      const data = await res.json();
-      const botReply = data.choices?.[0]?.message?.content || "No response";
+      // Read raw text first to avoid JSON parse error
+      const text = await res.text();
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch (err) {
+        console.error("Invalid JSON response:", text);
+        data = { choices: [{ message: { content: "Server returned invalid response" } }] };
+      }
 
+      const botReply = data.choices?.[0]?.message?.content || "No response";
       setMessages([...newMessages, { role: "assistant", content: botReply }]);
     } catch (err) {
       console.error(err);
@@ -39,7 +47,7 @@ export default function Chat() {
     }
   };
 
-  // Auto-scroll to bottom on new message
+  // Auto-scroll to bottom
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -62,9 +70,7 @@ export default function Chat() {
         {messages.map((msg, i) => (
           <div
             key={i}
-            className={`flex ${
-              msg.role === "user" ? "justify-end" : "justify-start"
-            }`}
+            className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
           >
             <div
               className={`px-4 py-2 rounded-lg max-w-xs break-words ${
