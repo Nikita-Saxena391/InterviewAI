@@ -15,7 +15,7 @@ export default function Chat() {
     setInput("");
 
     try {
-      const res = await fetch("http://localhost:8000/api/chat", {
+      const res = await fetch("https://interviewai-app-70e1.onrender.com", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: newMessages }),
