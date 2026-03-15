@@ -15,7 +15,7 @@ function CareerGuide() {
   const [saving, setSaving] = useState(false);
 
   // Direct backend URL
-  const BACKEND_URL = "https://interviewai-app-70e1.onrender.com";
+  const BACKEND_URL = "https://interviewai-app.onrender.com";
 
   // Fetch roadmap
   useEffect(() => {
