@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { ServerUrl } from "../utils/server";
 import { useSelector } from "react-redux";
 import { motion } from "motion/react";
 import { BsArrowLeft } from "react-icons/bs";
@@ -13,13 +12,16 @@ function CareerHome() {
   const [role, setRole] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // ✅ Use your deployed backend URL directly
+  const BACKEND_URL = "https://interviewai-app.onrender.com";
+
   const generateRoadmap = async () => {
     try {
       if (!role) return alert("Enter a role");
 
       setLoading(true);
 
-      const res = await axios.post(ServerUrl + "/api/career/roadmap", {
+      const res = await axios.post(`${BACKEND_URL}/api/career/roadmap`, {
         role,
         userId: userData?._id,
       });
